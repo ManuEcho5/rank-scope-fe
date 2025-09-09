@@ -381,4 +381,5 @@ button[mat-raised-button] {
 .dark-theme .footer-note {
     border-top: 1px solid #334155;
 }
-.footer-note .footer-disclaimer { opacity:.7; font-size:.72rem; }
+/* Disclaimer now inherits same color/opacity as rest of footer text */
+/* .footer-note .footer-disclaimer { opacity:.7; font-size:.72rem; } */
