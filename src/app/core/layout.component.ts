@@ -27,7 +27,7 @@ import { catchError } from 'rxjs/operators';
     <main class="main-container">
       <ng-content></ng-content>
     </main>
-    <footer class="footer-note">© {{year}} RankScope | Developed By Echo5Digital</footer>
+  <footer class="footer-note">© {{year}} RankScope | Developed By Echo5Digital · <span class="footer-disclaimer">Live Google data via SerpAPI. Not affiliated with Google.</span></footer>
   </div>
   `,
   styles: [`

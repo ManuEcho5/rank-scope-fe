@@ -32,7 +32,7 @@ app-keyword-rank-checker {
 }
 
 .app-shell {
-    min-height: 100vh;
+    /* min-height: 100vh; */ /* allow footer to sit just below content */
     display: flex;
     flex-direction: column;
 }
@@ -40,7 +40,7 @@ app-keyword-rank-checker {
 .main-container {
     width:100%;
     max-width: var(--content-max);
-    margin: 32px auto 64px;
+    margin: 32px auto 28px; /* reduced bottom gap so footer sits closer */
     padding: 0 32px;
     box-sizing: border-box;
 }
@@ -371,9 +371,14 @@ button[mat-raised-button] {
 }
 
 .footer-note {
-    margin-top: auto;
-    padding: 32px 0 24px;
+    margin-top: 12px; /* follows content directly */
+    padding: 16px 0 20px;
     text-align: center;
-    font-size: .75rem;
+    font-size: .72rem;
     opacity: .55;
+    border-top: 1px solid rgba(0,0,0,.08);
 }
+.dark-theme .footer-note {
+    border-top: 1px solid #334155;
+}
+.footer-note .footer-disclaimer { opacity:.7; font-size:.72rem; }
