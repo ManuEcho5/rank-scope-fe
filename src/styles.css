@@ -33,7 +33,7 @@ app-keyword-rank-checker {
 
 .app-shell {
     /* min-height: 100vh; */ /* allow footer to sit just below content */
-    display: flex;
+    /* display: flex; */ /* allow footer to sit just below content */
     flex-direction: column;
 }
 
