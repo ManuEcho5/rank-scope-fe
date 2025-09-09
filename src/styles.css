@@ -385,3 +385,5 @@ button[mat-raised-button] {
 /* .footer-note .footer-disclaimer { opacity:.7; font-size:.72rem; } */
 .footer-note a { text-decoration:none; font-weight:600; }
 .footer-note a:hover { text-decoration:none; opacity:.85; }
+.brand-sub a { text-decoration:none; }
+.brand-sub a:hover { text-decoration:none; }

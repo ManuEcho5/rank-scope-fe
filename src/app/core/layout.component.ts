@@ -12,7 +12,7 @@ import { catchError } from 'rxjs/operators';
       <div class="toolbar-inner">
         <span class="brand-stack">
           <span class="brand">Rank<span class="accent">Scope</span></span>
-          <span class="brand-sub">by Echo5 Digital</span>
+          <span class="brand-sub">by <a href="https://www.echo5digital.com/" target="_blank" rel="noopener noreferrer">ECHO 5 DIGITAL</a></span>
         </span>
         <span class="spacer"></span>
         <div class="connection-indicator" [matTooltip]="backendStatusTooltip" aria-label="Backend connectivity status" role="status" aria-live="polite">
