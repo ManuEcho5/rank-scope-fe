@@ -14,7 +14,7 @@ import { Component } from '@angular/core';
     <main class="main-container">
       <ng-content></ng-content>
     </main>
-    <footer class="footer-note">© {{year}} RankScope | Developer By Shani Echo5Digital</footer>
+    <footer class="footer-note">© {{year}} RankScope | Developed By Echo5Digital</footer>
   </div>
   `,
   styles: [`
@@ -32,3 +32,4 @@ export class LayoutComponent {
     document.documentElement.classList.toggle('dark-theme', this.dark);
   }
 }
+
