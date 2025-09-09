@@ -10,7 +10,10 @@ import { catchError } from 'rxjs/operators';
   <div class="app-shell">
     <mat-toolbar class="toolbar-accent" color="#ffffff">
       <div class="toolbar-inner">
-        <span class="brand">Rank<span class="accent">Scope</span></span>
+        <span class="brand-stack">
+          <span class="brand">Rank<span class="accent">Scope</span></span>
+          <span class="brand-sub">by Echo5 Digital</span>
+        </span>
         <span class="spacer"></span>
         <div class="connection-indicator" [matTooltip]="backendStatusTooltip" aria-label="Backend connectivity status" role="status" aria-live="polite">
           <span class="dot" [class.up]="backendUp" [class.down]="!backendUp"></span>
@@ -29,7 +32,9 @@ import { catchError } from 'rxjs/operators';
   `,
   styles: [`
   .toolbar-inner { max-width: var(--content-max,1040px); margin:0 auto; width:100%; padding:0 32px; box-sizing:border-box; display:flex; align-items:center; }
+  .brand-stack { display:flex; flex-direction:column; line-height:1.05; }
   .brand { font-weight:700; letter-spacing:.5px; font-size:1.05rem; }
+  .brand-sub { font-size:.55rem; letter-spacing:.18em; text-transform:uppercase; font-weight:600; opacity:.55; margin-top:2px; }
     .accent { background: linear-gradient(90deg,#6366f1,#8b5cf6); -webkit-background-clip:text; color:transparent; }
     .spacer { flex:1; }
     .dark-theme .accent { background: linear-gradient(90deg,#a78bfa,#6366f1); }
@@ -46,7 +51,8 @@ import { catchError } from 'rxjs/operators';
   @media (max-width: 640px) {
     .toolbar-inner { padding:0 14px; }
     mat-toolbar.toolbar-accent { min-height:56px; }
-    .brand { font-size:.95rem; }
+  .brand { font-size:.95rem; }
+  .brand-sub { font-size:.5rem; }
     .connection-indicator { margin-right:6px; }
     .connection-indicator .status-text { font-size:.6rem; }
     .spacer { flex:1; }
