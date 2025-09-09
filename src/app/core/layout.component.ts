@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-layout',
   template: `
   <div class="app-shell">
-    <mat-toolbar class="toolbar-accent" color="primary">
+    <mat-toolbar class="toolbar-accent" color="#ffffff">
       <span class="brand">Rank<span class="accent">Scope</span></span>
       <span class="spacer"></span>
       <button mat-icon-button aria-label="Toggle theme" (click)="toggleTheme()">
