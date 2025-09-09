@@ -9,15 +9,17 @@ import { catchError } from 'rxjs/operators';
   template: `
   <div class="app-shell">
     <mat-toolbar class="toolbar-accent" color="#ffffff">
-      <span class="brand">Rank<span class="accent">Scope</span></span>
-      <span class="spacer"></span>
-      <div class="connection-indicator" [matTooltip]="backendStatusTooltip" aria-label="Backend connectivity status" role="status" aria-live="polite">
-        <span class="dot" [class.up]="backendUp" [class.down]="!backendUp"></span>
-        <span class="status-text" [class.up]="backendUp" [class.down]="!backendUp">{{ backendUp ? 'Connected' : 'Disconnected' }}</span>
+      <div class="toolbar-inner">
+        <span class="brand">Rank<span class="accent">Scope</span></span>
+        <span class="spacer"></span>
+        <div class="connection-indicator" [matTooltip]="backendStatusTooltip" aria-label="Backend connectivity status" role="status" aria-live="polite">
+          <span class="dot" [class.up]="backendUp" [class.down]="!backendUp"></span>
+          <span class="status-text" [class.up]="backendUp" [class.down]="!backendUp">{{ backendUp ? 'Connected' : 'Disconnected' }}</span>
+        </div>
+        <button mat-icon-button aria-label="Toggle theme" (click)="toggleTheme()">
+          <mat-icon>{{ dark ? 'light_mode' : 'dark_mode' }}</mat-icon>
+        </button>
       </div>
-      <button mat-icon-button aria-label="Toggle theme" (click)="toggleTheme()">
-        <mat-icon>{{ dark ? 'light_mode' : 'dark_mode' }}</mat-icon>
-      </button>
     </mat-toolbar>
     <main class="main-container">
       <ng-content></ng-content>
@@ -26,7 +28,8 @@ import { catchError } from 'rxjs/operators';
   </div>
   `,
   styles: [`
-    .brand { font-weight:700; letter-spacing:.5px; font-size:1.05rem; }
+  .toolbar-inner { max-width: var(--content-max,1040px); margin:0 auto; width:100%; padding:0 32px; box-sizing:border-box; display:flex; align-items:center; }
+  .brand { font-weight:700; letter-spacing:.5px; font-size:1.05rem; }
     .accent { background: linear-gradient(90deg,#6366f1,#8b5cf6); -webkit-background-clip:text; color:transparent; }
     .spacer { flex:1; }
     .dark-theme .accent { background: linear-gradient(90deg,#a78bfa,#6366f1); }
@@ -40,6 +43,14 @@ import { catchError } from 'rxjs/operators';
   .connection-indicator .status-text { margin-left:6px; font-size:.70rem; font-weight:600; letter-spacing:.5px; text-transform:uppercase; user-select:none; transition:color .25s ease; }
   .connection-indicator .status-text.up { color:#059669; }
   .connection-indicator .status-text.down { color:#dc2626; }
+  @media (max-width: 640px) {
+    .toolbar-inner { padding:0 14px; }
+    mat-toolbar.toolbar-accent { min-height:56px; }
+    .brand { font-size:.95rem; }
+    .connection-indicator { margin-right:6px; }
+    .connection-indicator .status-text { font-size:.6rem; }
+    .spacer { flex:1; }
+  }
   `]
 })
 export class LayoutComponent implements OnInit, OnDestroy {

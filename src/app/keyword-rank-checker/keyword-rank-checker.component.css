@@ -44,6 +44,28 @@
     .form-surface { padding: 16px 2vw 12px 2vw; }
 }
 
+/* Align main container similar to toolbar horizontal rhythm */
+.main-container { max-width: 1040px; margin: 0 auto; padding: 0 28px; }
+@media (max-width: 900px) { .main-container { padding: 0 20px; } }
+@media (max-width: 640px) { .main-container { padding: 0 14px; } }
+
+/* Ensure card and form take full width on very small screens nicely */
+@media (max-width: 480px) {
+    .form-surface { padding: 18px 14px 16px 14px; border-radius:18px; }
+    button.action-btn { width:100%; justify-content:center; }
+    .status-chips { display:flex; flex-wrap:wrap; }
+}
+
+/* Rank grid responsive tweak */
+.rank-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); }
+@media (max-width: 520px) { .rank-grid { grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap:12px; } }
+
+/* Consistent vertical spacing rhythm on mobile */
+@media (max-width: 640px) {
+    .form-surface h1 { font-size:1.75rem !important; margin-bottom:24px !important; }
+    mat-form-field { --mdc-outlined-text-field-input-text-size:1rem; }
+}
+
 .actions-row {
     display: flex;
     gap: 16px;
