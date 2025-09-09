@@ -1,0 +1,348 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* Global theme */
+:root {
+    --gradient: linear-gradient(135deg, #4f46e5, #6366f1 40%, #8b5cf6);
+    --card-radius: 18px;
+    --elev-shadow: 0 2px 4px -1px rgba(0, 0, 0, .08), 0 4px 12px -2px rgba(0, 0, 0, .06);
+    --bg: radial-gradient(circle at 20% 20%, #eef2ff, #f5f7fa 60%);
+    --text: #1f2937;
+    --surface: #ffffffcc;
+    --border: #e2e8f0;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Inter', 'Roboto', 'Arial', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: var(--bg);
+    color: var(--text);
+}
+
+body {
+    padding: 0;
+}
+
+app-root,
+app-keyword-rank-checker {
+    display: block;
+}
+
+.app-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 920px;
+    margin: 32px auto 64px;
+    padding: 0 24px;
+}
+
+.elevated-card {
+    border-radius: var(--card-radius);
+    box-shadow: var(--elev-shadow);
+    backdrop-filter: blur(6px);
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+}
+
+.elevated-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
+    pointer-events: none;
+}
+
+.toolbar-accent {
+    background: var(--surface);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 16px -4px rgba(0, 0, 0, .12);
+    border-bottom: 1px solid var(--border);
+}
+
+.gradient-text {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.subtle-label {
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-size: .65rem;
+    font-weight: 600;
+    opacity: .6;
+}
+
+/* Form */
+form.keyword-form {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+}
+
+form.keyword-form .full-row {
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 700px) {
+    form.keyword-form {
+        grid-template-columns: 1fr;
+    }
+}
+
+.actions-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+button[mat-raised-button] {
+    font-weight: 600;
+    letter-spacing: .5px;
+}
+
+.status-chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.rank-grid {
+    margin-top: 12px;
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.rank-metric {
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: #f1f5f9;
+    position: relative;
+    overflow: hidden;
+    transition: background .4s;
+}
+
+.dark-theme {
+    --bg: radial-gradient(circle at 20% 20%, #0f172a, #111827 55%);
+    --text: #f1f5f9;
+    --surface: #1e293b99;
+    --border: #334155;
+}
+
+.dark-theme .rank-metric {
+    background: #1e293b;
+}
+
+.dark-theme .rank-metric.primary {
+    background: linear-gradient(135deg, #6366f1, #4338ca);
+}
+
+.dark-theme .error-banner {
+    background: #2c2f3a;
+    color: #f1f5f9;
+}
+
+.dark-theme .toolbar-accent {
+    box-shadow: 0 4px 18px -4px rgba(0, 0, 0, .6);
+}
+
+.rank-metric.primary {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: #fff;
+}
+
+.rank-metric h4 {
+    margin: 0 0 4px;
+    font-size: .7rem;
+    letter-spacing: .08em;
+    opacity: .75;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.rank-metric .value {
+    font-size: 1.85rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+[data-rank-key] .value {
+    transition: transform .35s cubic-bezier(.4, 0, .2, 1), opacity .35s;
+}
+
+[data-rank-key].flash .value {
+    transform: scale(1.08);
+    opacity: .85;
+}
+
+/* Action button styling */
+.action-btn {
+    background: linear-gradient(92deg, #4f46e5, #6366f1 45%, #8b5cf6);
+    color: #fff;
+    box-shadow: 0 4px 14px -4px rgba(99, 102, 241, .55), 0 0 0 1px rgba(255, 255, 255, .05) inset;
+    border-radius: 14px !important;
+    position: relative;
+    overflow: hidden;
+    transition: transform .35s, box-shadow .35s;
+}
+
+.action-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, .25), transparent 60%);
+    opacity: 0;
+    transition: opacity .45s;
+}
+
+.action-btn:hover::after {
+    opacity: 1;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px -6px rgba(99, 102, 241, .7);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px -4px rgba(99, 102, 241, .55);
+}
+
+.action-btn:focus-visible {
+    outline: 2px solid #818cf8;
+    outline-offset: 3px;
+}
+
+.action-btn[disabled] {
+    opacity: .45;
+    filter: saturate(.6);
+    transform: none !important;
+    box-shadow: none;
+}
+
+/* Input theming */
+.mat-mdc-form-field {
+    --outline-idle: #64748b55;
+    --outline-hover: #818cf8aa;
+    --outline-focus: #6366f1;
+}
+
+.mat-mdc-form-field:not(.mat-focused) .mdc-notched-outline__leading,
+.mat-mdc-form-field:not(.mat-focused) .mdc-notched-outline__trailing,
+.mat-mdc-form-field:not(.mat-focused) .mdc-notched-outline__notch {
+    border-color: var(--outline-idle);
+}
+
+.mat-mdc-text-field-wrapper:hover .mdc-notched-outline__leading,
+.mat-mdc-text-field-wrapper:hover .mdc-notched-outline__trailing {
+    border-color: var(--outline-hover);
+}
+
+/* Hover should also affect notch center */
+.mat-mdc-text-field-wrapper:hover .mdc-notched-outline__notch {
+    border-color: var(--outline-hover);
+}
+
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__notch {
+    border-color: var(--outline-focus);
+    /* Removed box-shadow to prevent segmented focus rectangle */
+}
+
+/* Invalid state (keep Material error color but ensure all three segments match) */
+.mat-mdc-form-field.mat-mdc-form-field-invalid .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-mdc-form-field-invalid .mdc-notched-outline__trailing,
+.mat-mdc-form-field.mat-mdc-form-field-invalid .mdc-notched-outline__notch {
+    border-color: var(--mdc-theme-error, #f44336);
+}
+
+/* Improve floating label positioning & focus color */
+.mat-mdc-form-field.mat-focused .mdc-floating-label {
+    color: var(--outline-focus);
+}
+
+/* Prefix icon spacing so label notch aligns cleanly */
+/* Prefix icon: remove custom margins that caused mini box artifact */
+.mat-mdc-form-field .mat-mdc-form-field-icon-prefix {
+    margin: 0; /* revert */
+    padding-left: 8px; /* light breathing room */
+    color: #64748b;
+    display: flex;
+    align-items: center;
+}
+
+/* Allow default floating label transform (remove override that misaligned outline) */
+
+/* Utility */
+.visually-hidden {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.fade-in {
+    animation: fade .5s ease;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.error-banner {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 500;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.not-found-chip {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, .55);
+    z-index: 1000;
+}
+
+.footer-note {
+    margin-top: auto;
+    padding: 32px 0 24px;
+    text-align: center;
+    font-size: .75rem;
+    opacity: .55;
+}

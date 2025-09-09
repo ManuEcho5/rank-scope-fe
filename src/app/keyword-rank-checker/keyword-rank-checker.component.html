@@ -1,0 +1,79 @@
+<div class="app-shell">
+  <mat-toolbar class="toolbar-accent" color="transparent">
+    <span class="gradient-text" style="font-weight:700; font-size:1.05rem; letter-spacing:.5px;">Keyword Rank Checker</span>
+    <span style="flex:1 1 auto"></span>
+    <button mat-icon-button matTooltip="GitHub (future)"><mat-icon>code</mat-icon></button>
+  </mat-toolbar>
+
+  <div class="main-container">
+    <mat-card class="elevated-card fade-in form-surface">
+      <form class="keyword-form" [formGroup]="form" (ngSubmit)="submit()" aria-labelledby="rankFormHeading">
+        <h2 id="rankFormHeading" class="visually-hidden">Check keyword rank</h2>
+        <mat-form-field appearance="outline" subscriptSizing="dynamic" style="margin-top: 5px;" >
+          <mat-label>Keyword</mat-label>
+          <mat-icon matPrefix>search</mat-icon>
+          <input matInput formControlName="keyword" placeholder="Best web developer" autocomplete="off" aria-label="Keyword" />
+          <mat-hint align="end">Main search phrase</mat-hint>
+          <mat-error *ngIf="form.get('keyword')?.hasError('required')">Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" subscriptSizing="dynamic" style="margin-top: 5px;">
+          <mat-label>Domain</mat-label>
+          <mat-icon matPrefix>language</mat-icon>
+          <input matInput formControlName="domain" placeholder="example.com" autocomplete="off" aria-label="Domain" />
+          <mat-hint align="end">Without protocol</mat-hint>
+          <mat-error *ngIf="form.get('domain')?.hasError('required')">Required</mat-error>
+        </mat-form-field>
+
+        <div class="actions-row full-row">
+          <button mat-raised-button color="primary" type="submit" [disabled]="loading || form.invalid" class="action-btn" aria-live="polite">
+            <mat-icon class="btn-icon" *ngIf="!loading">insights</mat-icon>
+            <mat-progress-spinner *ngIf="loading" diameter="22" strokeWidth="3" mode="indeterminate" aria-label="Loading"></mat-progress-spinner>
+            <span class="btn-text" [class.hidden]="loading">Check Rank</span>
+          </button>
+        </div>
+      </form>
+      <div class="status-chips" *ngIf="!loading && result">
+        <mat-chip color="primary" selected>{{ result.keyword }}</mat-chip>
+        <mat-chip>{{ result.domain }}</mat-chip>
+      </div>
+    </mat-card>
+    <div *ngIf="loading" class="loading-overlay">
+      <mat-progress-spinner diameter="70" mode="indeterminate"></mat-progress-spinner>
+    </div>
+
+    <div *ngIf="!loading && result" class="fade-in">
+      <div class="rank-grid" role="status" aria-live="polite">
+        <div class="rank-metric primary" data-rank-key="page">
+          <h4>Page</h4>
+          <div class="value" *ngIf="result.page !== null; else pageNA">{{ result.page }}</div>
+          <ng-template #pageNA><span style="font-size:1rem; opacity:.75;">N/A</span></ng-template>
+        </div>
+        <div class="rank-metric" [class.primary]="result.position !== null" data-rank-key="position">
+          <h4>Position</h4>
+            <div class="value" *ngIf="result.position !== null; else posNA">{{ result.position }}</div>
+            <ng-template #posNA><span style="font-size:1rem; opacity:.6;">N/A</span></ng-template>
+        </div>
+        <div class="rank-metric" *ngIf="result.absoluteRank !== null && result.absoluteRank !== undefined" data-rank-key="absolute">
+          <h4>Absolute</h4>
+          <div class="value">{{ result.absoluteRank }}</div>
+        </div>
+      </div>
+      <div style="margin-top:20px;" *ngIf="result.page === null || result.position === null" class="fade-in">
+        <div class="error-banner" style="background:#f1f5f9; color:#334155;">
+          <mat-icon>info</mat-icon>
+          Not ranked in the top 100 for this query.
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!loading && error" class="fade-in" style="margin-top:16px;">
+      <div class="error-banner">
+        <mat-icon>warning</mat-icon>
+        {{ error }}
+      </div>
+    </div>
+
+  <div class="footer-note" *ngIf="!loading">Live Google data via SerpAPI. Not affiliated with Google.</div>
+  </div>
+</div>
