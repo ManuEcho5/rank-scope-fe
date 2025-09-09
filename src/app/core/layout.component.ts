@@ -11,8 +11,9 @@ import { catchError } from 'rxjs/operators';
     <mat-toolbar class="toolbar-accent" color="#ffffff">
       <span class="brand">Rank<span class="accent">Scope</span></span>
       <span class="spacer"></span>
-      <div class="connection-indicator" [matTooltip]="backendStatusTooltip" aria-label="Backend connectivity status" role="status">
+      <div class="connection-indicator" [matTooltip]="backendStatusTooltip" aria-label="Backend connectivity status" role="status" aria-live="polite">
         <span class="dot" [class.up]="backendUp" [class.down]="!backendUp"></span>
+        <span class="status-text" [class.up]="backendUp" [class.down]="!backendUp">{{ backendUp ? 'Connected' : 'Disconnected' }}</span>
       </div>
       <button mat-icon-button aria-label="Toggle theme" (click)="toggleTheme()">
         <mat-icon>{{ dark ? 'light_mode' : 'dark_mode' }}</mat-icon>
@@ -36,6 +37,9 @@ import { catchError } from 'rxjs/operators';
     .connection-indicator .dot.up::after { background:radial-gradient(circle,#6ee7b7,#10b981); }
     .connection-indicator .dot.down { background:radial-gradient(circle at 30% 30%, #fca5a5,#ef4444 65%,#b91c1c); }
     .connection-indicator .dot.down::after { background:radial-gradient(circle,#fca5a5,#ef4444); }
+  .connection-indicator .status-text { margin-left:6px; font-size:.70rem; font-weight:600; letter-spacing:.5px; text-transform:uppercase; user-select:none; transition:color .25s ease; }
+  .connection-indicator .status-text.up { color:#059669; }
+  .connection-indicator .status-text.down { color:#dc2626; }
   `]
 })
 export class LayoutComponent implements OnInit, OnDestroy {
