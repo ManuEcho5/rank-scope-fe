@@ -1,7 +1,7 @@
 <div class="app-shell">
   <div class="main-container">
-    <mat-card class="elevated-card fade-in form-surface">
-          <h1 style="text-align:center; font-size:2.1rem; font-weight:800; margin-bottom:32px; background:linear-gradient(90deg,#6366f1,#8b5cf6);-webkit-background-clip:text;color:transparent;">Keyword Rank Checker</h1>
+  <mat-card class="elevated-card fade-in form-surface">
+      <h1 style="text-align:center; font-size:2.1rem; font-weight:800; margin-bottom:32px; background:linear-gradient(90deg,#6366f1,#8b5cf6); background-clip:text; -webkit-background-clip:text; color:transparent;">Keyword Rank Checker</h1>
       <form class="keyword-form" [formGroup]="form" (ngSubmit)="submit()" aria-labelledby="rankFormHeading">
         <h2 id="rankFormHeading" class="visually-hidden">Check keyword rank</h2>
         <mat-form-field appearance="outline" subscriptSizing="dynamic" style="margin-top: 5px;" >
@@ -18,6 +18,22 @@
           <input matInput formControlName="domain" placeholder="example.com" autocomplete="off" aria-label="Domain" />
           <mat-hint align="end">Without protocol</mat-hint>
           <mat-error *ngIf="form.get('domain')?.hasError('required')">Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" subscriptSizing="dynamic" style="margin-top:5px;">
+          <mat-label>Country</mat-label>
+          <mat-icon matPrefix>public</mat-icon>
+          <mat-select formControlName="country" aria-label="Country selector">
+            <mat-option *ngFor="let c of countries" [value]="c.code">{{ c.name }}</mat-option>
+          </mat-select>
+          <mat-hint align="end">Target country</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" subscriptSizing="dynamic" style="margin-top:5px;">
+          <mat-label>City / Region (optional)</mat-label>
+          <mat-icon matPrefix>place</mat-icon>
+            <input matInput formControlName="location" placeholder="e.g. Austin, Texas" aria-label="Location" />
+          <mat-hint align="end">Refines SERP location</mat-hint>
         </mat-form-field>
 
         <div class="actions-row full-row">

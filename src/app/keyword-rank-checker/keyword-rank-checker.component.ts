@@ -12,21 +12,35 @@ export class KeywordRankCheckerComponent {
   loading = false;
   result: RankResponse | null = null;
   error: string | null = null;
+  countries = [
+    { code: 'us', name: 'United States' },
+    { code: 'gb', name: 'United Kingdom' },
+    { code: 'ca', name: 'Canada' },
+    { code: 'au', name: 'Australia' },
+    { code: 'in', name: 'India' },
+    { code: 'de', name: 'Germany' },
+    { code: 'fr', name: 'France' },
+    { code: 'es', name: 'Spain' },
+    { code: 'it', name: 'Italy' },
+    { code: 'br', name: 'Brazil' }
+  ];
 
   constructor(private fb: FormBuilder, private rankService: RankCheckerService) {
     this.form = this.fb.group({
       keyword: ['', [Validators.required]],
-      domain: ['', [Validators.required]]
+      domain: ['', [Validators.required]],
+      country: ['us'],
+      location: ['']
     });
   }
 
   submit() {
     if (this.form.invalid) return;
-    const { keyword, domain } = this.form.value;
+  const { keyword, domain, country, location } = this.form.value;
     this.loading = true;
     this.result = null;
     this.error = null;
-    this.rankService.checkRank(keyword, domain).subscribe({
+  this.rankService.checkRank(keyword, domain, { country, location }).subscribe({
       next: (res: RankResponse) => {
         this.result = res;
         this.loading = false;

@@ -15,6 +15,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppComponent } from './app.component';
 import { KeywordRankCheckerComponent } from './keyword-rank-checker/keyword-rank-checker.component';
@@ -39,7 +40,8 @@ import { LayoutComponent } from './core/layout.component';
   MatChipsModule,
   MatTooltipModule,
   MatDividerModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
