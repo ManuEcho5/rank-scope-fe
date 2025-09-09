@@ -27,7 +27,8 @@ import { catchError } from 'rxjs/operators';
     <main class="main-container">
       <ng-content></ng-content>
     </main>
-  <footer class="footer-note">© {{year}} RankScope | Developed By Echo5Digital · <span class="footer-disclaimer">Live Google data via SerpAPI. Not affiliated with Google.</span></footer>
+  <footer class="footer-note">© {{year}} RankScope | Developed By <a href="https://www.echo5digital.com/" target="_blank" rel="noopener noreferrer">ECHO 5 DIGITAL</a>
+ | <span class="footer-disclaimer">Live Google data via SerpAPI.</span></footer>
   </div>
   `,
   styles: [`
@@ -66,27 +67,27 @@ export class LayoutComponent implements OnInit, OnDestroy {
   backendStatusTooltip = 'Checking API...';
   private pollSub?: Subscription;
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.checkOnce();
     // Poll every 30s
-    this.pollSub = interval(30000).subscribe(()=> this.checkOnce());
+    this.pollSub = interval(30000).subscribe(() => this.checkOnce());
   }
 
   ngOnDestroy(): void {
     this.pollSub?.unsubscribe();
   }
 
-  private checkOnce(){
-    this.http.get(environment.apiBase + '/health', { responseType: 'text'}).pipe(
-      catchError(()=>{ this.setStatus(false); return [] as any; })
-    ).subscribe(()=> this.setStatus(true));
+  private checkOnce() {
+    this.http.get(environment.apiBase + '/health', { responseType: 'text' }).pipe(
+      catchError(() => { this.setStatus(false); return [] as any; })
+    ).subscribe(() => this.setStatus(true));
   }
 
-  private setStatus(up:boolean){
+  private setStatus(up: boolean) {
     this.backendUp = up;
-    this.backendStatusTooltip = up? 'Backend reachable' : 'Backend unreachable';
+    this.backendStatusTooltip = up ? 'Backend reachable' : 'Backend unreachable';
   }
 
   toggleTheme() {
